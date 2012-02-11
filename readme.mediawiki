@@ -157,10 +157,10 @@ AsakusaFWはそういった作り方をあまり考えなくても最適化し�
 対象業務の性質やアプリケーションの作り方によって速度に差が出る。まったく当たり前の話だけど＾＾；
 
 ==備考（実行方法）==
-分散環境で実行させる方法。<br>
+当サンプルを分散環境で実行させる方法。<br>
 （[http://www.ne.jp/asahi/hishidama/home/tech/asakusafw/windgate.html#h_deploy AsakusaFWの実行環境]や[http://www.ne.jp/asahi/hishidama/home/tech/apache/hadoop/cascading/install.html#h_distribute Cascadingの実行環境]はインストールされている前提）
 
-#shディレクトリーをそのまま分散環境にコピーする。
+#[https://github.com/hishidama/Hadoop-example2-CSV/tree/master/sh shディレクトリー]をそのまま分散環境にコピーする。
 #0data.shを実行して/tmp/hadoop2の下にテストデータを作成する。（それぞれの実行時にここからHDFSへ転送される。また、処理結果もここに格納される）
 #2hive-init.shを実行し、Hiveのテーブルを作っておく。
 #4afw-init.shを実行し、AsakusaFWアプリのアーカイブを解凍する。<br>また、WindGateのプロパティーファイル（$ASAKUSA_HOME/windgate/profile/asakusa.properties）内のresource.local.basePathも手動で/tmp/hadoop2に変えておく。
