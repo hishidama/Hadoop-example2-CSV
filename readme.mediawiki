@@ -119,6 +119,9 @@ Excelにしていて楽だったのは、参照元モデルの名前を変更し
 また、MapTaskは4つになっていた。<br>
 WindGateではローカルのCSVファイルを読み込んでHDFSにはSequenceFileとして書き込むので、サイズが大きくなって分散数が増えたのだと思われる。
 
+あと、WindGateによるローカルへのファイル転送は、ディレクトリーでなくファイル名が直接指定できる。<br>
+（AsakusaFW以外では、結果の出力先の指定はディレクトリーで、ファイル名はpart-r-00000とかの数字付きとなる）
+
 ===Cascading（1.2）===
 [http://www.ne.jp/asahi/hishidama/home/tech/apache/hadoop/cascading/index.html Cascading]は、実行速度的にはHiveとほぼ同等か。
 
