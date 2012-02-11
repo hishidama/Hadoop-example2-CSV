@@ -1,0 +1,63 @@
+
+load data local inpath '/tmp/hadoop2/input/input.txt'
+overwrite into table tbl_input
+;
+
+--日付毎の総売上
+insert overwrite table tbl_out1
+select date1, sum(price * count1)
+from tbl_input
+group by date1
+;
+insert overwrite local directory '/tmp/hadoop2/hive/out1'
+select concat(date1, ',', amount)
+from tbl_out1
+;
+
+--日付毎の客数（伝票の個数）
+insert overwrite table tbl_out2
+select date1, count(*)
+from (
+  select distinct date1, number from tbl_input
+) s
+group by date1
+;
+insert overwrite local directory '/tmp/hadoop2/hive/out2'
+select concat(date1, ',', count1)
+from tbl_out2
+;
+
+--時間帯毎の売上
+insert overwrite table tbl_out3
+select h.date1, h.hh, if(amount is not null, amount, 0)
+from (
+  select date1, hh, sum(price * count1) as amount
+  from (
+    select date1, substring(time, 0, 2) as hh, price, count1 from tbl_input
+  ) s
+  group by date1, hh
+) s
+right outer join (
+  select * from (select distinct date1 from tbl_input) s join tbl_hour on(1=1)
+) h
+on(s.date1 = h.date1 and s.hh = h.hh)
+;
+insert overwrite local directory '/tmp/hadoop2/hive/out3'
+select concat(date1, ',', hh, ',', amount)
+from tbl_out3
+;
+
+--上位売上の商品
+insert overwrite table tbl_out4
+select * from (
+  select date1, code, sum(price * count1) as amount
+  from tbl_input
+  group by date1, code
+) s
+order by date1 asc, amount desc, code asc
+limit 10
+;
+insert overwrite local directory '/tmp/hadoop2/hive/out4'
+select concat(date1, ',', code, ',', amount)
+from tbl_out4
+;

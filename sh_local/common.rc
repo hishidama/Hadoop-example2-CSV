@@ -1,0 +1,5 @@
+export DIR=/tmp/hadoop2
+export LOGFILE=$DIR/hadoop2.log
+export SRC_FILE=input/input.txt
+export SRC=$DIR/$SRC_FILE
+export TOP=10

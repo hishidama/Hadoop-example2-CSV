@@ -1,0 +1,48 @@
+drop table if exists tbl_input;
+drop table if exists tbl_hour;
+drop table if exists tbl_out1;
+drop table if exists tbl_out2;
+drop table if exists tbl_out3;
+drop table if exists tbl_out4;
+
+create table tbl_input(
+  date1 string,
+  time string,
+  number string,
+  code string,
+  price int,
+  count1 int
+)
+row format delimited
+  fields terminated by ','
+;
+
+create table tbl_hour(
+  hh string
+);
+
+load data local inpath '/home/asakusa/ws_hadoop2/sh/hh_table.txt'
+overwrite into table tbl_hour
+;
+
+create table tbl_out1(
+  date1 string,
+  amount bigint
+);
+
+create table tbl_out2(
+  date1 string,
+  count1 bigint
+);
+
+create table tbl_out3(
+  date1 string,
+  hh string,
+  amount bigint
+);
+
+create table tbl_out4(
+  date1 string,
+  code string,
+  amount bigint
+);

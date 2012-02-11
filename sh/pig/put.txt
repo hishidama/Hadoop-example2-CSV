@@ -1,0 +1,1 @@
+copyFromLocal $SRC $SRC

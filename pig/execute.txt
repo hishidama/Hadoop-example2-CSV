@@ -1,0 +1,43 @@
+rmf $DST
+
+a = load '$SRC' using PigStorage(',') as (
+  date:chararray,	--日付
+  time:chararray,	--時刻
+  number:chararray,	--伝票番号
+  code:chararray,	--商品コード
+  price:int,     	--値段
+  count:int      	--個数
+);
+hh_table = load '$HH' as (hh:chararray);
+
+--日付毎の総売上
+b1 = foreach a generate date, price * count as amount;
+b2 = group b1 by date;
+b3 = foreach b2 generate group, SUM(b1.amount);
+store b3 into '$DST/out1' using PigStorage(',');
+
+--日付毎の客数（伝票の個数）
+c1 = foreach a generate date, number;
+c2 = distinct c1;
+c3 = group c2 by date;
+c4 = foreach c3 generate group, COUNT(c2);
+store c4 into '$DST/out2' using PigStorage(',');
+
+--時間帯毎の売上
+d1 = foreach a generate date, SUBSTRING(time, 0, 2) as hh, price * count as amount;
+d2 = group d1 by (date, hh);
+d3 = foreach d2 generate group.date, group.hh, SUM(d1.amount) as amount;
+dh1 = foreach a generate date;
+dh2 = distinct dh1;
+dh3 = cross dh2, hh_table;
+d4 = join dh3 by (date, hh) left, d3 by (date, hh);
+d5 = foreach d4 generate dh2::date, hh_table::hh, (amount is null ? 0 : amount);
+store d5 into '$DST/out3' using PigStorage(',');
+
+--上位売上の商品
+e1 = foreach a generate date, code, price * count as amount;
+e2 = group e1 by (date, code);
+e3 = foreach e2 generate group.date, group.code, SUM(e1.amount) as amount;
+e4 = order e3 by date asc, amount desc, code asc;
+e5 = limit e4 $TOP;
+store e5 into '$DST/out4' using PigStorage(',');

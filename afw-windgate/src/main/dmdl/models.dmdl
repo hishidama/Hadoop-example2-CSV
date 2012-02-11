@@ -1,0 +1,63 @@
+
+"入力ファイル"
+@windgate.csv
+input_model = {
+  "日付"
+  date: TEXT;
+  "時刻"
+  time: TEXT;
+  "伝票番号"
+  number: TEXT;
+  "商品コード"
+  code: TEXT;
+  "値段"
+  price: INT;
+  "個数"
+  count: INT;
+};
+
+amount_model = {
+  "日付"
+  date: TEXT;
+  "時刻"
+  time: TEXT;
+  "商品コード"
+  code: TEXT;
+  "金額"
+  amount: LONG;
+};
+
+"日付毎の総売上"
+@windgate.csv
+summarized out1_model = amount_model => {
+  any date -> date;
+  sum amount -> amount;
+} % date;
+
+summarized number_model = input_model => {
+  any date -> date;
+  any number -> number;
+} % date, number;
+
+"日付毎の客数"
+@windgate.csv
+summarized out2_model = number_model => {
+  any date -> date;
+  count number -> count;
+} % date;
+
+"時間帯毎の売上"
+@windgate.csv
+summarized out3_model = amount_model => {
+  any date -> date;
+  any time -> time;
+  sum amount -> amount;
+} % date, time;
+
+"上位売上の商品"
+@windgate.csv
+summarized out4_model = amount_model => {
+  any date -> date;
+  any code -> code;
+  sum amount -> amount;
+} % date, code;

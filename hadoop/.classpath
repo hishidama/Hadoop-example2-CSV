@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/hadoop/hadoop-core/0.20.2-cdh3u2/hadoop-core-0.20.2-cdh3u2.jar" sourcepath="M2_REPO/org/apache/hadoop/hadoop-core/0.20.2-cdh3u2/hadoop-core-0.20.2-cdh3u2-sources.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>
