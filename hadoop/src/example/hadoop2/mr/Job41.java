@@ -6,12 +6,9 @@ import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.RawComparator;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
-import org.apache.hadoop.io.WritableComparator;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -114,21 +111,6 @@ public class Job41 {
 			amount.set(input.getPrice() * input.getCount());
 
 			context.write(okey, amount);
-		}
-	}
-
-	public static class IntReverseComparator implements
-			RawComparator<IntWritable> {
-		static final WritableComparator INT_COMPARATOR = new IntWritable.Comparator();
-
-		@Override
-		public int compare(IntWritable o1, IntWritable o2) {
-			return o2.compareTo(o1);
-		}
-
-		@Override
-		public int compare(byte[] b1, int s1, int l1, byte[] b2, int s2, int l2) {
-			return INT_COMPARATOR.compare(b2, s2, l2, b1, s1, l1);
 		}
 	}
 
