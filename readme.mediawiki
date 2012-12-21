@@ -145,9 +145,9 @@ WindGateではローカルのCSVファイルを読み込んでHDFSにはSequence
 ===AZAREA-Cluster Framework（0.9.0 評価版）===
 [http://www.ne.jp/asahi/hishidama/home/tech/azarea/index.html AZAREA]は落ちた。
 
-Hadoopのスタンドアローンモードで動かした場合は「Unexpected key」とかいう謎の例外。
-（シミュレーションモードだとちゃんと正しい結果が出る）
-Hadoopの分散環境で動かした場合はOutOfMemoryError。
+Hadoopのスタンドアローンモードで動かした場合は「Unexpected key」とかいう謎の例外。<br>
+（シミュレーションモードだとちゃんと正しい結果が出る）<br>
+Hadoopの分散環境で動かした場合はOutOfMemoryError。<br>
 ジョブ数は3つで、1つ目にかなり演算が集中している感じだが、それがいけないのだろうか。
 
 ==考察==
