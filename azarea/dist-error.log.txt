@@ -1,0 +1,190 @@
+log4j:ERROR Could not find value for key log4j.appender.NullAppender
+log4j:ERROR Could not instantiate appender named "NullAppender".
+12/12/21 23:41:38 INFO distributed.DistributedMapReduceExecuter: max tasks = 6
+12/12/21 23:41:38 INFO util.DateCheckerImpl: Trial version is available until 2013/02/23 09:00:00.000.
+12/12/21 23:41:38 INFO distributed.DistributedMapReduceExecuter: Job No.1
+12/12/21 23:41:38 INFO job.MapReduceJob: Create job "example.hadoop2.azarea.flow.AzareaApp#1/3".
+12/12/21 23:41:38 INFO job.MapReduceJob: Combiner = null
+12/12/21 23:41:38 INFO job.MapReduceJob: Summarizers = 5
+12/12/21 23:41:38 INFO job.MapReduceJob: Distribution count = 6
+12/12/21 23:41:38 INFO job.MapReduceJob: Reducer count = 30
+12/12/21 23:41:38 INFO job.MapReduceJob: Input paths=[hdfs://namenode:50010/tmp/hadoop2/azain/SalesEntity.txt]
+12/12/21 23:41:38 INFO job.MapReduceJob: Max input split size = 9223372036854775807
+12/12/21 23:41:38 INFO job.MapReduceJob: Output path = hdfs://namenode:50010/tmp/hadoop2/azareaout
+12/12/21 23:41:38 INFO job.MapReduceJob: Output entities = [Result1Entity.txt, tempResult2Entity.txt, tempDateEntity.txt, tempTimeEntity.txt, tempResult4Entity.txt]
+12/12/21 23:41:38 INFO job.MapReduceJob: Output format class = class jp.co.cac.azarea.cluster.reduce.EntityOutputFormat
+12/12/21 23:41:38 INFO job.MapReduceJob: Operations in this job:
+12/12/21 23:41:38 INFO job.MapReduceJob:   SalesFlowの1番目のConversion
+12/12/21 23:41:38 INFO job.MapReduceJob:   SalesFlowの1番目のGroup
+12/12/21 23:41:38 INFO job.MapReduceJob:   SalesFlowの2番目のConversion
+12/12/21 23:41:38 INFO job.MapReduceJob:   SalesFlowの1番目のGroupSort
+12/12/21 23:41:38 INFO job.MapReduceJob:   SalesFlowの2番目のGroupSort
+12/12/21 23:41:38 INFO job.MapReduceJob:   SalesFlowの3番目のConversion
+12/12/21 23:41:38 INFO job.MapReduceJob:   SalesFlowの3番目のGroup
+12/12/21 23:41:38 INFO job.MapReduceJob:   SalesFlowの4番目のConversion
+12/12/21 23:41:38 INFO job.MapReduceJob:   SalesFlowの4番目のGroup
+12/12/21 23:41:38 INFO input.FileInputFormat: Total input paths to process : 1
+12/12/21 23:41:38 INFO mapred.JobClient: Running job: job_201210022208_0069
+12/12/21 23:41:39 INFO mapred.JobClient:  map 0% reduce 0%
+12/12/21 23:41:50 INFO mapred.JobClient:  map 12% reduce 0%
+12/12/21 23:41:53 INFO mapred.JobClient:  map 22% reduce 0%
+12/12/21 23:41:57 INFO mapred.JobClient:  map 33% reduce 0%
+12/12/21 23:42:00 INFO mapred.JobClient:  map 42% reduce 0%
+12/12/21 23:42:02 INFO mapred.JobClient:  map 45% reduce 0%
+12/12/21 23:42:03 INFO mapred.JobClient:  map 52% reduce 0%
+12/12/21 23:42:05 INFO mapred.JobClient:  map 54% reduce 0%
+12/12/21 23:42:06 INFO mapred.JobClient:  map 62% reduce 0%
+12/12/21 23:42:08 INFO mapred.JobClient:  map 65% reduce 0%
+12/12/21 23:42:09 INFO mapred.JobClient:  map 68% reduce 0%
+12/12/21 23:42:12 INFO mapred.JobClient:  map 72% reduce 0%
+12/12/21 23:42:15 INFO mapred.JobClient:  map 75% reduce 0%
+12/12/21 23:42:18 INFO mapred.JobClient:  map 77% reduce 0%
+12/12/21 23:42:21 INFO mapred.JobClient:  map 82% reduce 0%
+12/12/21 23:42:24 INFO mapred.JobClient:  map 85% reduce 0%
+12/12/21 23:42:25 INFO mapred.JobClient:  map 86% reduce 0%
+12/12/21 23:42:26 INFO mapred.JobClient:  map 86% reduce 1%
+12/12/21 23:42:27 INFO mapred.JobClient:  map 89% reduce 1%
+12/12/21 23:42:28 INFO mapred.JobClient:  map 92% reduce 1%
+12/12/21 23:42:30 INFO mapred.JobClient:  map 95% reduce 1%
+12/12/21 23:42:31 INFO mapred.JobClient:  map 97% reduce 1%
+12/12/21 23:42:33 INFO mapred.JobClient:  map 98% reduce 1%
+12/12/21 23:42:34 INFO mapred.JobClient:  map 99% reduce 1%
+12/12/21 23:42:36 INFO mapred.JobClient:  map 99% reduce 2%
+12/12/21 23:42:41 INFO mapred.JobClient:  map 100% reduce 2%
+12/12/21 23:42:44 INFO mapred.JobClient:  map 100% reduce 3%
+12/12/21 23:42:45 INFO mapred.JobClient:  map 100% reduce 4%
+12/12/21 23:42:46 INFO mapred.JobClient:  map 100% reduce 5%
+12/12/21 23:42:47 INFO mapred.JobClient:  map 100% reduce 12%
+12/12/21 23:42:48 INFO mapred.JobClient:  map 100% reduce 19%
+12/12/21 23:42:57 INFO mapred.JobClient:  map 100% reduce 25%
+12/12/21 23:42:58 INFO mapred.JobClient:  map 100% reduce 29%
+12/12/21 23:42:59 INFO mapred.JobClient:  map 100% reduce 37%
+12/12/21 23:43:00 INFO mapred.JobClient:  map 100% reduce 38%
+12/12/21 23:43:03 INFO mapred.JobClient:  map 100% reduce 39%
+12/12/21 23:43:07 INFO mapred.JobClient:  map 100% reduce 42%
+12/12/21 23:43:09 INFO mapred.JobClient:  map 100% reduce 43%
+12/12/21 23:43:12 INFO mapred.JobClient:  map 100% reduce 45%
+12/12/21 23:43:13 INFO mapred.JobClient:  map 100% reduce 48%
+12/12/21 23:43:14 INFO mapred.JobClient:  map 100% reduce 50%
+12/12/21 23:43:15 INFO mapred.JobClient:  map 100% reduce 51%
+12/12/21 23:43:16 INFO mapred.JobClient:  map 100% reduce 52%
+12/12/21 23:43:17 INFO mapred.JobClient:  map 100% reduce 55%
+12/12/21 23:43:19 INFO mapred.JobClient:  map 100% reduce 56%
+12/12/21 23:43:20 INFO mapred.JobClient:  map 100% reduce 59%
+12/12/21 23:43:24 INFO mapred.JobClient:  map 100% reduce 60%
+12/12/21 23:43:26 INFO mapred.JobClient:  map 100% reduce 63%
+12/12/21 23:43:27 INFO mapred.JobClient:  map 100% reduce 66%
+12/12/21 23:43:28 INFO mapred.JobClient:  map 100% reduce 69%
+12/12/21 23:43:31 INFO mapred.JobClient:  map 100% reduce 72%
+12/12/21 23:43:32 INFO mapred.JobClient:  map 100% reduce 75%
+12/12/21 23:43:35 INFO mapred.JobClient:  map 100% reduce 76%
+12/12/21 23:43:37 INFO mapred.JobClient:  map 100% reduce 80%
+12/12/21 23:43:39 INFO mapred.JobClient:  map 100% reduce 81%
+12/12/21 23:43:42 INFO mapred.JobClient:  map 100% reduce 88%
+12/12/21 23:43:44 INFO mapred.JobClient:  map 100% reduce 89%
+12/12/21 23:43:47 INFO mapred.JobClient:  map 100% reduce 92%
+12/12/21 23:43:52 INFO mapred.JobClient:  map 100% reduce 96%
+12/12/21 23:43:56 INFO mapred.JobClient:  map 100% reduce 99%
+12/12/21 23:44:14 INFO mapred.JobClient: Task Id : attempt_201210022208_0069_r_000016_0, Status : FAILED
+Error: Java heap space
+attempt_201210022208_0069_r_000016_0: Exception in thread "Thread for syncLogs" java.lang.OutOfMemoryError: Java heap space
+attempt_201210022208_0069_r_000016_0: 	at java.util.Vector.<init>(Vector.java:111)
+attempt_201210022208_0069_r_000016_0: 	at java.util.Vector.<init>(Vector.java:124)
+attempt_201210022208_0069_r_000016_0: 	at org.apache.log4j.Hierarchy.getCurrentLoggers(Hierarchy.java:305)
+attempt_201210022208_0069_r_000016_0: 	at org.apache.log4j.LogManager.getCurrentLoggers(LogManager.java:232)
+attempt_201210022208_0069_r_000016_0: 	at org.apache.hadoop.mapred.TaskLog.syncLogs(TaskLog.java:362)
+attempt_201210022208_0069_r_000016_0: 	at org.apache.hadoop.mapred.Child$3.run(Child.java:153)
+12/12/21 23:45:01 INFO mapred.JobClient: Task Id : attempt_201210022208_0069_r_000016_1, Status : FAILED
+Error: Java heap space
+12/12/21 23:45:15 INFO mapred.JobClient:  map 100% reduce 96%
+12/12/21 23:45:18 INFO mapred.JobClient: Task Id : attempt_201210022208_0069_r_000016_2, Status : FAILED
+Error: Java heap space
+attempt_201210022208_0069_r_000016_2: Exception in thread "LeaseChecker" java.lang.OutOfMemoryError: Java heap space
+attempt_201210022208_0069_r_000016_2: 	at java.lang.ThreadLocal$ThreadLocalMap.<init>(ThreadLocal.java:327)
+attempt_201210022208_0069_r_000016_2: 	at java.lang.ThreadLocal$ThreadLocalMap.<init>(ThreadLocal.java:242)
+attempt_201210022208_0069_r_000016_2: 	at java.lang.ThreadLocal.createInheritedMap(ThreadLocal.java:217)
+attempt_201210022208_0069_r_000016_2: 	at java.lang.Thread.init(Thread.java:362)
+attempt_201210022208_0069_r_000016_2: 	at java.lang.Thread.<init>(Thread.java:420)
+attempt_201210022208_0069_r_000016_2: 	at org.apache.hadoop.ipc.Client$Connection.<init>(Client.java:242)
+attempt_201210022208_0069_r_000016_2: 	at org.apache.hadoop.ipc.Client.getConnection(Client.java:1282)
+attempt_201210022208_0069_r_000016_2: 	at org.apache.hadoop.ipc.Client.call(Client.java:1121)
+attempt_201210022208_0069_r_000016_2: 	at org.apache.hadoop.ipc.RPC$Invoker.invoke(RPC.java:226)
+attempt_201210022208_0069_r_000016_2: 	at $Proxy1.renewLease(Unknown Source)
+attempt_201210022208_0069_r_000016_2: 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+attempt_201210022208_0069_r_000016_2: 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+attempt_201210022208_0069_r_000016_2: 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+attempt_201210022208_0069_r_000016_2: 	at java.lang.reflect.Method.invoke(Method.java:597)
+attempt_201210022208_0069_r_000016_2: 	at org.apache.hadoop.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:82)
+attempt_201210022208_0069_r_000016_2: 	at org.apache.hadoop.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:59)
+attempt_201210022208_0069_r_000016_2: 	at $Proxy1.renewLease(Unknown Source)
+attempt_201210022208_0069_r_000016_2: 	at org.apache.hadoop.hdfs.DFSClient$LeaseChecker.renew(DFSClient.java:1440)
+attempt_201210022208_0069_r_000016_2: 	at org.apache.hadoop.hdfs.DFSClient$LeaseChecker.run(DFSClient.java:1452)
+attempt_201210022208_0069_r_000016_2: 	at java.lang.Thread.run(Thread.java:662)
+12/12/21 23:45:32 INFO mapred.JobClient:  map 100% reduce 98%
+12/12/21 23:45:35 INFO mapred.JobClient:  map 100% reduce 99%
+12/12/21 23:46:11 INFO mapred.JobClient:  map 100% reduce 96%
+12/12/21 23:46:17 INFO mapred.JobClient: Job complete: job_201210022208_0069
+12/12/21 23:46:17 INFO mapred.JobClient: Counters: 48
+12/12/21 23:46:17 INFO mapred.JobClient:   Job Counters 
+12/12/21 23:46:17 INFO mapred.JobClient:     Launched reduce tasks=36
+12/12/21 23:46:17 INFO mapred.JobClient:     SLOTS_MILLIS_MAPS=141151
+12/12/21 23:46:17 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+12/12/21 23:46:17 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+12/12/21 23:46:17 INFO mapred.JobClient:     Launched map tasks=3
+12/12/21 23:46:17 INFO mapred.JobClient:     Data-local map tasks=3
+12/12/21 23:46:17 INFO mapred.JobClient:     Failed reduce tasks=1
+12/12/21 23:46:17 INFO mapred.JobClient:     SLOTS_MILLIS_REDUCES=570656
+12/12/21 23:46:17 INFO mapred.JobClient:   AZAREA
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation input: #SalesFlow-Conversion-1=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Input: SalesEntity.txt=20916875
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation input: #SalesFlow-Conversion-2=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation input: #SalesFlow-Conversion-3=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation input: #SalesFlow-Conversion-4=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation output: #SalesFlow-Conversion-3=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation input: #SalesFlow-GroupSort-1=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation output: #SalesFlow-Conversion-4=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation output: #SalesFlow-Conversion-1=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation output: #SalesFlow-Conversion-2=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation input: #SalesFlow-Group-3=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation input: #SalesFlow-Group-4=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation input: #SalesFlow-Group-1=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation output: #SalesFlow-Group-3=14
+12/12/21 23:46:17 INFO mapred.JobClient:     Output: tempTimeEntity.txt=14
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation output: #SalesFlow-Group-1=1
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation output: #SalesFlow-GroupSort-1=1395082
+12/12/21 23:46:17 INFO mapred.JobClient:     Operation output: #SalesFlow-Group-4=32767
+12/12/21 23:46:17 INFO mapred.JobClient:     Output: Result1Entity.txt=1
+12/12/21 23:46:17 INFO mapred.JobClient:     Output: tempResult2Entity.txt=1395082
+12/12/21 23:46:17 INFO mapred.JobClient:     Output: tempResult4Entity.txt=32767
+12/12/21 23:46:17 INFO mapred.JobClient:   FileSystemCounters
+12/12/21 23:46:17 INFO mapred.JobClient:     FILE_BYTES_READ=855167343
+12/12/21 23:46:17 INFO mapred.JobClient:     HDFS_BYTES_READ=167819931
+12/12/21 23:46:17 INFO mapred.JobClient:     FILE_BYTES_WRITTEN=1275095743
+12/12/21 23:46:17 INFO mapred.JobClient:     HDFS_BYTES_WRITTEN=18945839
+12/12/21 23:46:17 INFO mapred.JobClient:   Map-Reduce Framework
+12/12/21 23:46:17 INFO mapred.JobClient:     Map input records=4183375
+12/12/21 23:46:17 INFO mapred.JobClient:     Reduce shuffle bytes=230136082
+12/12/21 23:46:17 INFO mapred.JobClient:     Spilled Records=39254144
+12/12/21 23:46:17 INFO mapred.JobClient:     Map output bytes=398077719
+12/12/21 23:46:17 INFO mapred.JobClient:     CPU time spent (ms)=156080
+12/12/21 23:46:17 INFO mapred.JobClient:     Total committed heap usage (bytes)=1147662336
+12/12/21 23:46:17 INFO mapred.JobClient:     Combine input records=0
+12/12/21 23:46:17 INFO mapred.JobClient:     SPLIT_RAW_BYTES=360
+12/12/21 23:46:17 INFO mapred.JobClient:     Reduce input records=8340924
+12/12/21 23:46:17 INFO mapred.JobClient:     Reduce input groups=1427864
+12/12/21 23:46:17 INFO mapred.JobClient:     Combine output records=0
+12/12/21 23:46:17 INFO mapred.JobClient:     Physical memory (bytes) snapshot=2686271488
+12/12/21 23:46:17 INFO mapred.JobClient:     Reduce output records=1427864
+12/12/21 23:46:17 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=16605478912
+12/12/21 23:46:17 INFO mapred.JobClient:     Map output records=12524299
+Exception in thread "main" jp.co.cac.azarea.cluster.FrameworkException: ジョブ"example.hadoop2.azarea.flow.AzareaApp#1/3"が失敗しました。
+	at jp.co.cac.azarea.cluster.job.distributed.DistributedMapReduceExecuter.executeJob(DistributedMapReduceExecuter.java:139)
+	at jp.co.cac.azarea.cluster.job.MapReduceExecuter.execute(MapReduceExecuter.java:383)
+	at jp.co.cac.azarea.cluster.job.MapReduceExecuter.createJobManager(MapReduceExecuter.java:116)
+	at jp.co.cac.azarea.cluster.Main.execute(Main.java:48)
+	at example.hadoop2.azarea.flow.AzareaApp.main(AzareaApp.java:27)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:197)
