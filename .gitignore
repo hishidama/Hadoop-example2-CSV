@@ -2,3 +2,6 @@
 *.log
 *.class
 .metadata
+azarea-cluster-framework
+azarea/azarea
+azarea/classes

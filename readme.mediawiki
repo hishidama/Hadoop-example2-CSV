@@ -54,6 +54,9 @@ CSVファイルの色々な項目をキーとして、複数種類の集計を�
 |-
 |Cascading
 |3:31～3:45
+|-
+|AZAREA-Cluster Framework
+|OutOfMemoryError
 |}
 
 CSVファイルは160MB（3ブロック分）。レコード数は約418万3千件。
@@ -138,6 +141,14 @@ WindGateではローカルのCSVファイルを読み込んでHDFSにはSequence
 今回のテストデータではたまたま大丈夫そうに見えるが(苦笑)
 
 これらの話は（Cascadingの日本語の資料が少ないから分からないので）、実際に業務でCascadingを使おうとしたら不安になるところ。
+
+===AZAREA-Cluster Framework（0.9.0 評価版）===
+[http://www.ne.jp/asahi/hishidama/home/tech/azarea/index.html AZAREA]は落ちた。
+
+Hadoopのスタンドアローンモードで動かした場合は「Unexpected key」とかいう謎の例外。
+（シミュレーションモードだとちゃんと正しい結果が出る）
+Hadoopの分散環境で動かした場合はOutOfMemoryError。
+ジョブ数は3つで、1つ目にかなり演算が集中している感じだが、それがいけないのだろうか。
 
 ==考察==
 Cascadingは4種類の集計ジョブを同時に実行しているようだった。<br>
