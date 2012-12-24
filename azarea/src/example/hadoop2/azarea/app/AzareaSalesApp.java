@@ -1,7 +1,9 @@
-package example.hadoop2.azarea.flow;
+package example.hadoop2.azarea.app;
 
 import java.io.IOException;
 import java.util.List;
+
+import example.hadoop2.azarea.flow.SalesFlow;
 
 import jp.co.cac.azarea.cluster.Main;
 import jp.co.cac.azarea.cluster.planner.job.EntityFlowManager;
