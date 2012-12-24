@@ -31,6 +31,14 @@ public class SalesFlow extends EntityFlow {
 		final int LIMIT = getApplicationContext().getInt("LIMIT");
 		getEntityManager().defineEntityFormat("SalesEntity.txt",
 				DelimitedEntityFormat.delimiter(","));
+		getEntityManager().defineEntityFormat("Result1Entity.txt",
+				DelimitedEntityFormat.delimiter(","));
+		getEntityManager().defineEntityFormat("Result2Entity.txt",
+				DelimitedEntityFormat.delimiter(","));
+		getEntityManager().defineEntityFormat("Result3Entity.txt",
+				DelimitedEntityFormat.delimiter(","));
+		getEntityManager().defineEntityFormat("Result4Entity.txt",
+				DelimitedEntityFormat.delimiter(","));
 
 		EntityFile<SalesEntity> entity1 = getInput(SalesEntity.class);
 		Conversion<SalesEntity, Result1Entity> entity2 = new Conversion<SalesEntity, Result1Entity>(

@@ -3,6 +3,6 @@ BASEDIR=$(cd $(dirname $0);pwd)
 
 echo $(date '+%Y-%m-%d %H:%M:%S') azarea start >> $LOGFILE
 rm -rf $DIR/azareaout
-hadoop jar $BASEDIR/AzareaApp.jar -i=$SRC_AZAREA -o=$DIR/azareaout $TOP
+hadoop jar $BASEDIR/AzareaSalesApp.jar -i=$SRC_AZAREA -o=$DIR/azareaout $TOP
 res=$?
 echo $(date '+%Y-%m-%d %H:%M:%S') azarea end $res >> $LOGFILE

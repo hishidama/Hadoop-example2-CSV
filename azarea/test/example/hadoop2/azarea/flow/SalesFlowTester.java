@@ -6,7 +6,7 @@ import jp.co.cac.azarea.cluster.tester.MapReduceJobManagerTester;
 import jp.co.cac.azarea.cluster.util.Generated;
 
 @Generated("AZAREA-Cluster 1.0")
-public class SalesFlowTest {
+public class SalesFlowTester {
 
 	public static void main(String[] args) throws IOException {
 		MapReduceJobManagerTester tester = new MapReduceJobManagerTester(

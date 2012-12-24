@@ -8,7 +8,7 @@ import jp.co.cac.azarea.cluster.planner.job.EntityFlowManager;
 import jp.co.cac.azarea.cluster.util.Generated;
 
 @Generated("AZAREA-Cluster 1.0")
-public class AzareaApp extends EntityFlowManager {
+public class AzareaSalesApp extends EntityFlowManager {
 
 	@Override
 	protected void initializeContext(List<String> args) throws IOException {
@@ -24,7 +24,7 @@ public class AzareaApp extends EntityFlowManager {
 	}
 
 	public static void main(String[] args) throws Exception {
-		Main.execute(AzareaApp.class.getName(), args);
+		Main.execute(AzareaSalesApp.class.getName(), args);
 	}
 
 }
