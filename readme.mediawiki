@@ -145,10 +145,20 @@ WindGateではローカルのCSVファイルを読み込んでHDFSにはSequence
 ===AZAREA-Cluster Framework（0.9.0 評価版）===
 [http://www.ne.jp/asahi/hishidama/home/tech/azarea/index.html AZAREA]は落ちた。
 
-Hadoopのスタンドアローンモードで動かした場合は「Unexpected key」とかいう謎の例外。<br>
-（シミュレーションモードだとちゃんと正しい結果が出る）<br>
-Hadoopの分散環境で動かした場合はOutOfMemoryError。<br>
+Hadoopのスタンドアローンモードで動かした場合は「Unexpected key」とかいう謎の例外（azarea/local-error.log.txt）。<br>
+（シミュレーターで動かすとちゃんと正しい結果が出る）<br>
+Hadoopの分散環境で動かした場合はOutOfMemoryError（azarea/dist-error.log.txt）。<br>
 ジョブ数は3つで、1つ目にかなり演算が集中している感じだが、それがいけないのだろうか。
+
+1つのフローに4種類の集計処理が入っているのがいけないのかと思い、
+AZAREAではフローを分けて定義して1つのアプリケーションにまとめることが出来るので、それも試してみた（azarea2）。
+しかし内部ではまとめてMapReduceジョブを生成するようで、生成されたものは1つ目と同じだった。<br>
+（それはそれでアプリケーションの最適化の範囲が分かって良かったけど）
+
+そこで、試しに1/160のサイズ（シミュレーターで動かしたときと同じサイズ）の少量データで動かしてみたら、さっきよりは進んだものの、
+時間が経ってからReduceTaskの1つが「Error: java heap size」で異常終了。<br>
+WordCountの動作を見た感じではCombinerを使わずMapTaskで独自の集計を行っているような気がするので、そこが怪しいような…。<br>
+ただ、「Unexpected key」例外は発生しなかったので、それはスタンドアローンモードのみのエラーのようだから、無視して良さそう。
 
 ==考察==
 Cascadingは4種類の集計ジョブを同時に実行しているようだった。<br>
