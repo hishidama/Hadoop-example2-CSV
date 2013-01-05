@@ -72,12 +72,19 @@ public class SalesFlow extends EntityFlow {
 				entity4, "date", "number") {
 			@Override
 			protected void merge(List<NumberEntity> entities) {
+				// NOP
+			}
+
+			@Override
+			protected void merge(NumberEntity entity, boolean isFirst,
+					boolean isLast) {
 				// 先頭レコードに対してのみ出力する（distinct）
-				NumberEntity entity = entities.get(0);
-				Result2Entity result = new Result2Entity();
-				result.date = entity.date;
-				result.count = 1;
-				output(result);
+				if (isFirst) {
+					Result2Entity result = new Result2Entity();
+					result.date = entity.date;
+					result.count = 1;
+					output(result);
+				}
 			}
 		};
 		Group<Result2Entity> count2 = new Group<Result2Entity>(distinct2,
@@ -111,11 +118,18 @@ public class SalesFlow extends EntityFlow {
 				entity1, "date") {
 			@Override
 			protected void merge(List<SalesEntity> entities) {
-				SalesEntity entity = entities.get(0);
-				DateEntity result = new DateEntity();
-				result.match_key = "k";
-				result.date = entity.date;
-				output(result);
+				// NOP
+			}
+
+			@Override
+			protected void merge(SalesEntity entity, boolean isFirst,
+					boolean isLast) {
+				if (isFirst) {
+					DateEntity result = new DateEntity();
+					result.match_key = "k";
+					result.date = entity.date;
+					output(result);
+				}
 			}
 		};
 		Join<DateEntity, HhTable, DateHhEntity> joinDateHh = new Join<DateEntity, HhTable, DateHhEntity>(
@@ -171,15 +185,23 @@ public class SalesFlow extends EntityFlow {
 				sum4, "date", GroupSort.DELIMITER, "amount DESC", "code") {
 			@Override
 			protected void merge(List<Result4Entity> entities) {
-				int n = 0;
-				for (Result4Entity entity : entities) {
-					if (n++ >= LIMIT) {
-						break;
-					}
-					Result4Entity result = new Result4Entity();
-					result.copyFrom(entity);
-					output(result);
+				// NOP
+			}
+
+			private int n;
+
+			@Override
+			protected void merge(Result4Entity entity, boolean isFirst,
+					boolean isLast) {
+				if (isFirst) {
+					n = 0;
 				}
+				if (n++ >= LIMIT) {
+					return;
+				}
+				Result4Entity result = new Result4Entity();
+				result.copyFrom(entity);
+				output(result);
 			}
 		};
 		setOutput(entity9);

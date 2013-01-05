@@ -49,15 +49,23 @@ public class Sales4Flow extends EntityFlow {
 				sum4, "date", GroupSort.DELIMITER, "amount DESC", "code") {
 			@Override
 			protected void merge(List<Result4Entity> entities) {
-				int n = 0;
-				for (Result4Entity entity : entities) {
-					if (n++ >= LIMIT) {
-						break;
-					}
-					Result4Entity result = new Result4Entity();
-					result.copyFrom(entity);
-					output(result);
+				// NOP
+			}
+
+			private int n;
+
+			@Override
+			protected void merge(Result4Entity entity, boolean isFirst,
+					boolean isLast) {
+				if (isFirst) {
+					n = 0;
 				}
+				if (n++ >= LIMIT) {
+					return;
+				}
+				Result4Entity result = new Result4Entity();
+				result.copyFrom(entity);
+				output(result);
 			}
 		};
 		setOutput(entity9);

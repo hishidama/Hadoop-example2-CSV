@@ -21,5 +21,6 @@
 	<classpathentry kind="lib" path="/home/hishidama/git/Hadoop-example2-CSV/azarea-cluster-framework/hadoop1/poi-ooxml-schemas-3.8-20120326.jar"/>
 	<classpathentry kind="lib" path="/home/hishidama/git/Hadoop-example2-CSV/azarea-cluster-framework/hadoop1/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="/home/hishidama/git/Hadoop-example2-CSV/azarea-cluster-framework/hadoop1/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

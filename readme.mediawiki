@@ -56,7 +56,7 @@ CSVファイルの色々な項目をキーとして、複数種類の集計を�
 |3:31～3:45
 |-
 |AZAREA-Cluster Framework
-|OutOfMemoryError
+|4:12〜4:22
 |}
 
 CSVファイルは160MB（3ブロック分）。レコード数は約418万3千件。
@@ -143,22 +143,22 @@ WindGateではローカルのCSVファイルを読み込んでHDFSにはSequence
 これらの話は（Cascadingの日本語の資料が少ないから分からないので）、実際に業務でCascadingを使おうとしたら不安になるところ。
 
 ===AZAREA-Cluster Framework（0.9.0 評価版）===
-[http://www.ne.jp/asahi/hishidama/home/tech/azarea/index.html AZAREA]は落ちた。
+[http://www.ne.jp/asahi/hishidama/home/tech/azarea/index.html AZAREA]でも測定してみた。<br>
+AZAREAではローカルファイルを扱うことが出来ないので、AZAREA実行前後にhadoopコマンドを使って転送している（転送時間は前後合わせておよそ10秒）。
 
-Hadoopのスタンドアローンモードで動かした場合は「Unexpected key」とかいう謎の例外（azarea/local-error.log.txt）。<br>
+Hadoopのスタンドアローンモードで動かすと、「Unexpected key」とかいう謎の例外が発生した（azarea/local-error.log.txt）。<br>
 （シミュレーターで動かすとちゃんと正しい結果が出る）<br>
-Hadoopの分散環境で動かした場合はOutOfMemoryError（azarea/dist-error.log.txt）。<br>
-ジョブ数は3つで、1つ目にかなり演算が集中している感じだが、それがいけないのだろうか。
+これは次バージョンで解決されるらしい。
 
-1つのフローに4種類の集計処理が入っているのがいけないのかと思い、
-AZAREAではフローを分けて定義して1つのアプリケーションにまとめることが出来るので、それも試してみた（azarea2）。
+Hadoopの分散環境で動かすと、当初版はOutOfMemoryErrorが発生した（azarea/dist-error.log.txt）。<br>
+GroupSortで先頭1レコードしか使わない場合はisFirstを引数に持つメソッドを使うと教わったので、修正してみたら上手く動いた。<br>
+（自動生成されるソースにはこのメソッドは出てこないので、失念していた。ドキュメントには書いてあるのだが）
+
+azarea2は、当初版でOutOfMemoryErrorが発生したときに
+1つのフローに4種類の集計処理が入っているのがいけないのかと思ったので、
+フローを分けて定義して1つのアプリケーションにまとめてみたもの。
 しかし内部ではまとめてMapReduceジョブを生成するようで、生成されたものは1つ目と同じだった。<br>
 （それはそれでアプリケーションの最適化の範囲が分かって良かったけど）
-
-そこで、試しに1/160のサイズ（シミュレーターで動かしたときと同じサイズ）の少量データで動かしてみたら、さっきよりは進んだものの、
-時間が経ってからReduceTaskの1つが「Error: java heap size」で異常終了。<br>
-WordCountの動作を見た感じではCombinerを使わずMapTaskで独自の集計を行っているような気がするので、そこが怪しいような…。<br>
-ただ、「Unexpected key」例外は発生しなかったので、それはスタンドアローンモードのみのエラーのようだから、無視して良さそう。
 
 ==考察==
 Cascadingは4種類の集計ジョブを同時に実行しているようだった。<br>

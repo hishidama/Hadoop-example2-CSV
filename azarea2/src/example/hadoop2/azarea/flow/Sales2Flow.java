@@ -39,12 +39,19 @@ public class Sales2Flow extends EntityFlow {
 				entity4, "date", "number") {
 			@Override
 			protected void merge(List<NumberEntity> entities) {
+				// NOP
+			}
+
+			@Override
+			protected void merge(NumberEntity entity, boolean isFirst,
+					boolean isLast) {
 				// 先頭レコードに対してのみ出力する（distinct）
-				NumberEntity entity = entities.get(0);
-				Result2Entity result = new Result2Entity();
-				result.date = entity.date;
-				result.count = 1;
-				output(result);
+				if (isFirst) {
+					Result2Entity result = new Result2Entity();
+					result.date = entity.date;
+					result.count = 1;
+					output(result);
+				}
 			}
 		};
 		Group<Result2Entity> count2 = new Group<Result2Entity>(distinct2,

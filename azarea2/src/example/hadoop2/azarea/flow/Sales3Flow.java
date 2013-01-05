@@ -54,11 +54,18 @@ public class Sales3Flow extends EntityFlow {
 				entity1, "date") {
 			@Override
 			protected void merge(List<SalesEntity> entities) {
-				SalesEntity entity = entities.get(0);
-				DateEntity result = new DateEntity();
-				result.match_key = "k";
-				result.date = entity.date;
-				output(result);
+				// NOP
+			}
+
+			@Override
+			protected void merge(SalesEntity entity, boolean isFirst,
+					boolean isLast) {
+				if (isFirst) {
+					DateEntity result = new DateEntity();
+					result.match_key = "k";
+					result.date = entity.date;
+					output(result);
+				}
 			}
 		};
 		Join<DateEntity, HhTable, DateHhEntity> joinDateHh = new Join<DateEntity, HhTable, DateHhEntity>(
