@@ -158,7 +158,7 @@ GroupSortで先頭1レコードしか使わない場合はisFirstを引数に持
 （自動生成されるソースにはこのメソッドは出てこないので、失念していた。ドキュメントには書いてあるのだが）
 
 AZAREAもAsakusaFWと同様に複数の集計処理をまとめて1つのMapReduceで実行する最適化がある（→[http://www.ne.jp/asahi/hishidama/home/tech/azarea/application.html#sales-app.mr.svg MapReduceジョブの図]）のだが、実行時間はAsakusaFWよりも遅かった。<br>
-とりあえず考えられる要因は、Task数（AsakusaFWはMap/Reduceが3〜4/0〜1なのに対してAZAREAは3〜18/6〜30）や
+とりあえず考えられる要因は、Task数（AsakusaFWはMap/Reduceが3〜4/0〜1なのに対してAZAREAは3〜18/6〜30。今回の測定環境はデータノードが3台なので、ノード数が増えれば速くなるかも）や
 中間データの形式（AsakusaFWはSequenceFileなのに対してAZAREAはTSVファイル）だろうか。
 エンティティークラスがWritableかどうかはあまり関係ないような気がするし…。
 
