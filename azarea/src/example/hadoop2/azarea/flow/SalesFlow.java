@@ -68,34 +68,15 @@ public class SalesFlow extends EntityFlow {
 				output(result);
 			}
 		};
-		GroupSort<NumberEntity, Result2Entity> distinct2 = new GroupSort<NumberEntity, Result2Entity>(
-				entity4, "date", "number") {
+		Group<NumberEntity> distinct2 = new Group<NumberEntity>(entity4,
+				"date", "number") {
+			// doSummarize()で何もしないと、summary（すなわち先頭レコード）がそのまま残る
 			@Override
-			protected void merge(List<NumberEntity> entities) {
-				// NOP
-			}
-
-			@Override
-			protected void merge(NumberEntity entity, boolean isFirst,
-					boolean isLast) {
-				// 先頭レコードに対してのみ出力する（distinct）
-				if (isFirst) {
-					Result2Entity result = new Result2Entity();
-					result.date = entity.date;
-					result.count = 1;
-					output(result);
-				}
+			protected void doSummarize(NumberEntity summary,
+					NumberEntity another) {
+				// NOP（先頭レコードだけ出力する）
 			}
 		};
-		Group<Result2Entity> count2 = new Group<Result2Entity>(distinct2,
-				"date") {
-			@Override
-			protected void doSummarize(Result2Entity summary,
-					Result2Entity another) {
-				summary.count += another.count;
-			}
-		};
-		setOutput(count2);
 		Conversion<SalesEntity, TimeEntity> entity3 = new Conversion<SalesEntity, TimeEntity>(
 				entity1) {
 			@Override
@@ -114,54 +95,12 @@ public class SalesFlow extends EntityFlow {
 			}
 		};
 		EntityFile<HhTable> entity6 = getInput(HhTable.class);
-		GroupSort<SalesEntity, DateEntity> entity7 = new GroupSort<SalesEntity, DateEntity>(
-				entity1, "date") {
+		Group<SalesEntity> entity7 = new Group<SalesEntity>(entity1, "date") {
 			@Override
-			protected void merge(List<SalesEntity> entities) {
-				// NOP
-			}
-
-			@Override
-			protected void merge(SalesEntity entity, boolean isFirst,
-					boolean isLast) {
-				if (isFirst) {
-					DateEntity result = new DateEntity();
-					result.match_key = "k";
-					result.date = entity.date;
-					output(result);
-				}
+			protected void doSummarize(SalesEntity summary, SalesEntity another) {
+				// NOP（先頭レコードだけ出力する）
 			}
 		};
-		Join<DateEntity, HhTable, DateHhEntity> joinDateHh = new Join<DateEntity, HhTable, DateHhEntity>(
-				entity7, entity6, "match_key") {
-			@Override
-			protected void merge(DateEntity main, List<HhTable> subs) {
-				for (HhTable sub : subs) {
-					DateHhEntity result = new DateHhEntity();
-					result.copyFrom(sub);
-					result.copyFrom(main);
-					output(result);
-				}
-			}
-		};
-		UniqueJoin<DateHhEntity, TimeEntity, Result3Entity> entity5 = new UniqueJoin<DateHhEntity, TimeEntity, Result3Entity>(
-				joinDateHh, sum3, "date", "hh") {
-			@Override
-			protected void merge(DateHhEntity main, TimeEntity sub) {
-				Result3Entity result = new Result3Entity();
-				result.copyFrom(sub);
-				output(result);
-			}
-
-			@Override
-			protected void merge(DateHhEntity main) {
-				Result3Entity result = new Result3Entity();
-				result.copyFrom(main);
-				result.amount = 0;
-				output(result);
-			}
-		};
-		setOutput(entity5);
 		Conversion<SalesEntity, Result4Entity> entity8 = new Conversion<SalesEntity, Result4Entity>(
 				entity1) {
 			@Override
@@ -205,6 +144,65 @@ public class SalesFlow extends EntityFlow {
 			}
 		};
 		setOutput(entity9);
+		Conversion<NumberEntity, Result2Entity> entity10 = new Conversion<NumberEntity, Result2Entity>(
+				distinct2) {
+			@Override
+			protected void convert(NumberEntity entity) {
+				Result2Entity result = new Result2Entity();
+				result.date = entity.date;
+				result.count = 1;
+				output(result);
+			}
+		};
+		Group<Result2Entity> count2 = new Group<Result2Entity>(entity10, "date") {
+			@Override
+			protected void doSummarize(Result2Entity summary,
+					Result2Entity another) {
+				summary.count += another.count;
+			}
+		};
+		setOutput(count2);
+		Conversion<SalesEntity, DateEntity> entity11 = new Conversion<SalesEntity, DateEntity>(
+				entity7) {
+			@Override
+			protected void convert(SalesEntity entity) {
+				DateEntity result = new DateEntity();
+				result.match_key = "k";
+				result.date = entity.date;
+				output(result);
+			}
+		};
+		Join<DateEntity, HhTable, DateHhEntity> joinDateHh = new Join<DateEntity, HhTable, DateHhEntity>(
+				entity11, entity6, "match_key") {
+			@Override
+			protected void merge(DateEntity main, List<HhTable> subs) {
+				for (HhTable sub : subs) {
+					DateHhEntity result = new DateHhEntity();
+					result.copyFrom(sub);
+					result.copyFrom(main);
+					output(result);
+				}
+			}
+
+		};
+		UniqueJoin<DateHhEntity, TimeEntity, Result3Entity> entity5 = new UniqueJoin<DateHhEntity, TimeEntity, Result3Entity>(
+				joinDateHh, sum3, "date", "hh") {
+			@Override
+			protected void merge(DateHhEntity main, TimeEntity sub) {
+				Result3Entity result = new Result3Entity();
+				result.copyFrom(sub);
+				output(result);
+			}
+
+			@Override
+			protected void merge(DateHhEntity main) {
+				Result3Entity result = new Result3Entity();
+				result.copyFrom(main);
+				result.amount = 0;
+				output(result);
+			}
+		};
+		setOutput(entity5);
 	}
 
 	public static void main(String[] args) throws Exception {

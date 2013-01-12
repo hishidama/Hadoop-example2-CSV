@@ -9,7 +9,6 @@ import jp.co.cac.azarea.cluster.planner.job.SimpleEntityFlowManager;
 import jp.co.cac.azarea.cluster.planner.operation.Conversion;
 import jp.co.cac.azarea.cluster.planner.operation.EntityFile;
 import jp.co.cac.azarea.cluster.planner.operation.Group;
-import jp.co.cac.azarea.cluster.planner.operation.GroupSort;
 import jp.co.cac.azarea.cluster.planner.operation.Join;
 import jp.co.cac.azarea.cluster.planner.operation.UniqueJoin;
 import jp.co.cac.azarea.cluster.util.Generated;
@@ -50,26 +49,24 @@ public class Sales3Flow extends EntityFlow {
 			}
 		};
 		EntityFile<HhTable> entity6 = getInput(HhTable.class);
-		GroupSort<SalesEntity, DateEntity> entity7 = new GroupSort<SalesEntity, DateEntity>(
-				entity1, "date") {
+		Group<SalesEntity> entity7 = new Group<SalesEntity>(entity1, "date") {
 			@Override
-			protected void merge(List<SalesEntity> entities) {
-				// NOP
+			protected void doSummarize(SalesEntity summary, SalesEntity another) {
+				// NOP（先頭レコードだけ出力する）
 			}
-
+		};
+		Conversion<SalesEntity, DateEntity> entity2 = new Conversion<SalesEntity, DateEntity>(
+				entity7) {
 			@Override
-			protected void merge(SalesEntity entity, boolean isFirst,
-					boolean isLast) {
-				if (isFirst) {
-					DateEntity result = new DateEntity();
-					result.match_key = "k";
-					result.date = entity.date;
-					output(result);
-				}
+			protected void convert(SalesEntity entity) {
+				DateEntity result = new DateEntity();
+				result.match_key = "k";
+				result.date = entity.date;
+				output(result);
 			}
 		};
 		Join<DateEntity, HhTable, DateHhEntity> joinDateHh = new Join<DateEntity, HhTable, DateHhEntity>(
-				entity7, entity6, "match_key") {
+				entity2, entity6, "match_key") {
 			@Override
 			protected void merge(DateEntity main, List<HhTable> subs) {
 				for (HhTable sub : subs) {

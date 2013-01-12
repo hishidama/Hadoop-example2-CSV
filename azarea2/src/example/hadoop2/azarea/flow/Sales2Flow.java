@@ -1,7 +1,5 @@
 package example.hadoop2.azarea.flow;
 
-import java.util.List;
-
 import jp.co.cac.azarea.cluster.Main;
 import jp.co.cac.azarea.cluster.entity.format.DelimitedEntityFormat;
 import jp.co.cac.azarea.cluster.planner.job.EntityFlow;
@@ -9,7 +7,6 @@ import jp.co.cac.azarea.cluster.planner.job.SimpleEntityFlowManager;
 import jp.co.cac.azarea.cluster.planner.operation.Conversion;
 import jp.co.cac.azarea.cluster.planner.operation.EntityFile;
 import jp.co.cac.azarea.cluster.planner.operation.Group;
-import jp.co.cac.azarea.cluster.planner.operation.GroupSort;
 import jp.co.cac.azarea.cluster.util.Generated;
 import example.hadoop2.azarea.entity.NumberEntity;
 import example.hadoop2.azarea.entity.Result2Entity;
@@ -35,27 +32,26 @@ public class Sales2Flow extends EntityFlow {
 				output(result);
 			}
 		};
-		GroupSort<NumberEntity, Result2Entity> distinct2 = new GroupSort<NumberEntity, Result2Entity>(
-				entity4, "date", "number") {
+		Group<NumberEntity> distinct2 = new Group<NumberEntity>(entity4,
+				"date", "number") {
+			// doSummarize()で何もしないと、summary（すなわち先頭レコード）がそのまま残る
 			@Override
-			protected void merge(List<NumberEntity> entities) {
-				// NOP
-			}
-
-			@Override
-			protected void merge(NumberEntity entity, boolean isFirst,
-					boolean isLast) {
-				// 先頭レコードに対してのみ出力する（distinct）
-				if (isFirst) {
-					Result2Entity result = new Result2Entity();
-					result.date = entity.date;
-					result.count = 1;
-					output(result);
-				}
+			protected void doSummarize(NumberEntity summary,
+					NumberEntity another) {
+				// NOP（先頭レコードだけ出力する）
 			}
 		};
-		Group<Result2Entity> count2 = new Group<Result2Entity>(distinct2,
-				"date") {
+		Conversion<NumberEntity, Result2Entity> entity2 = new Conversion<NumberEntity, Result2Entity>(
+				distinct2) {
+			@Override
+			protected void convert(NumberEntity entity) {
+				Result2Entity result = new Result2Entity();
+				result.date = entity.date;
+				result.count = 1;
+				output(result);
+			}
+		};
+		Group<Result2Entity> count2 = new Group<Result2Entity>(entity2, "date") {
 			@Override
 			protected void doSummarize(Result2Entity summary,
 					Result2Entity another) {
